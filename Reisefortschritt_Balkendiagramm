@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Balkendiagramm Reise-Fortschritt</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #fffefc;
+      text-align: center;
+    }
+    canvas {
+      max-width: 400px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>Reise-Fortschritt</h2>
+  <canvas id="barChart"></canvas>
+
+  <script>
+    const ctx = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bereist', 'Noch offen'],
+        datasets: [{
+          label: 'Länder',
+          data: [7, 22],
+          backgroundColor: ['#f4a300', '#ddd'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Horizontal
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 29
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
