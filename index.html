@@ -4,30 +4,69 @@
   <meta charset="UTF-8">
   <title>Besuchte Länder</title>
   <style>
-    body, html { margin: 0; padding: 0; }
-    svg { width: 100%; height: auto; display: block; }
-    .country { fill: #ddd; stroke: #555; stroke-width: 0.3; transition: fill 0.2s; }
-    .visited { fill: #F4A300; }
-    .country:hover { fill: #999; cursor: pointer; }
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .country {
+      fill: #dddddd;
+      stroke: #888888;
+      stroke-width: 0.5;
+      transition: fill 0.3s;
+    }
+    .visited {
+      fill: #F4A300;
+    }
+    .country:hover {
+      fill: #999999;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <!-- Verwende hier die SVG aus dem simple-world-map Projekt -->
-  <!-- Für jedes path-Element: id="CH", "MX", "TH", "ID", "LK" etc -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1001">
-    <!-- Beispiel: Schweiz -->
-    <path id="CH" class="country visited" title="Schweiz" d="…Pfad für CH…"/>
+    <!-- Beispielhafte Länder (vereinfachte Darstellung) -->
+    <!-- In einer echten SVG-Weltkarte ersetzt du diese mit vollständigen <path d="...">-Daten -->
+
+    <!-- Schweiz -->
+    <rect x="840" y="360" width="10" height="8" class="country visited">
+      <title>Schweiz</title>
+    </rect>
+
     <!-- Mexiko -->
-    <path id="MX" class="country visited" title="Mexiko" d="…Pfad für MX…"/>
+    <rect x="500" y="420" width="25" height="15" class="country visited">
+      <title>Mexiko</title>
+    </rect>
+
     <!-- Thailand -->
-    <path id="TH" class="country visited" title="Thailand" d="…Pfad für TH…"/>
+    <rect x="1270" y="460" width="20" height="15" class="country visited">
+      <title>Thailand</title>
+    </rect>
+
     <!-- Indonesien -->
-    <path id="ID" class="country visited" title="Indonesien" d="…Pfad für ID…"/>
+    <rect x="1350" y="500" width="30" height="15" class="country visited">
+      <title>Indonesien</title>
+    </rect>
+
     <!-- Sri Lanka -->
-    <path id="LK" class="country visited" title="Sri Lanka" d="…Pfad für LK…"/>
-    <!-- Restliche Länder -->
-    <path id="US" class="country" title="USA" d="…Pfad für US…"/>
-    <!-- … -->
+    <rect x="1320" y="540" width="15" height="10" class="country visited">
+      <title>Sri Lanka</title>
+    </rect>
+
+    <!-- Weitere Länder (nicht besucht, grau) -->
+    <rect x="600" y="350" width="30" height="15" class="country">
+      <title>USA</title>
+    </rect>
+    <rect x="900" y="400" width="30" height="15" class="country">
+      <title>Deutschland</title>
+    </rect>
+    <!-- Du kannst beliebig <rect> oder <path> mit class="country" ergänzen -->
+
   </svg>
 </body>
 </html>
