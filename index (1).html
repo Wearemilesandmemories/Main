@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Besuchte Länder – Weltkarte</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .country {
+      fill: #dddddd;
+      stroke: #999;
+      stroke-width: 0.4;
+      transition: fill 0.2s;
+    }
+    .country:hover {
+      fill: #aaa;
+      cursor: pointer;
+    }
+    .visited {
+      fill: #F4A300 !important;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1001">
+    <!-- Vereinfachte Weltkarte mit beispielhaften Ländern -->
+
+    <!-- Schweiz -->
+    <path id="CH" class="country visited" title="Schweiz"
+      d="M1035,370 L1040,370 L1040,375 L1035,375 Z" />
+
+    <!-- Mexiko -->
+    <path id="MX" class="country visited" title="Mexiko"
+      d="M450,500 L470,500 L470,520 L450,520 Z" />
+
+    <!-- Thailand -->
+    <path id="TH" class="country visited" title="Thailand"
+      d="M1250,550 L1270,550 L1270,570 L1250,570 Z" />
+
+    <!-- Indonesien -->
+    <path id="ID" class="country visited" title="Indonesien"
+      d="M1350,650 L1370,650 L1370,670 L1350,670 Z" />
+
+    <!-- Sri Lanka -->
+    <path id="LK" class="country visited" title="Sri Lanka"
+      d="M1320,620 L1330,620 L1330,630 L1320,630 Z" />
+
+    <!-- Weitere Länder (nicht besucht) -->
+    <path id="FR" class="country" title="Frankreich"
+      d="M1020,360 L1040,360 L1040,380 L1020,380 Z" />
+    <path id="DE" class="country" title="Deutschland"
+      d="M1060,350 L1080,350 L1080,370 L1060,370 Z" />
+    <path id="US" class="country" title="USA"
+      d="M300,400 L400,400 L400,450 L300,450 Z" />
+    <path id="BR" class="country" title="Brasilien"
+      d="M600,700 L650,700 L650,750 L600,750 Z" />
+
+    <!-- Hier kannst du weitere Länder ergänzen -->
+  </svg>
+</body>
+</html>
