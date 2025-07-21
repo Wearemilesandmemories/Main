@@ -1,0 +1,5 @@
+git init
+git add index.html
+git commit -m "Add visited world map"
+git remote add origin https://github.com/DEIN_USERNAME/visited-world-map.git
+git push -u origin main
