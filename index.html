@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8">
   <title>Besuchte Länder</title>
   <style>
     body, html { margin: 0; padding: 0; }
@@ -13,16 +12,22 @@
   </style>
 </head>
 <body>
+  <!-- Verwende hier die SVG aus dem simple-world-map Projekt -->
+  <!-- Für jedes path-Element: id="CH", "MX", "TH", "ID", "LK" etc -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1001">
-    <g id="countries">
-      <!-- Diese Pfade sind symbolisch – in einer echten Weltkarte müsstest du vollständige Pfade ergänzen -->
-      <title>Interaktive Weltkarte (Demo-Version)</title>
-      <rect x="600" y="400" width="20" height="10" class="country visited"><title>Schweiz</title></rect>
-      <rect x="250" y="500" width="30" height="15" class="country visited"><title>Mexiko</title></rect>
-      <rect x="1200" y="450" width="30" height="15" class="country visited"><title>Thailand</title></rect>
-      <rect x="1300" y="550" width="30" height="15" class="country visited"><title>Indonesien</title></rect>
-      <rect x="1350" y="600" width="20" height="10" class="country visited"><title>Sri Lanka</title></rect>
-    </g>
+    <!-- Beispiel: Schweiz -->
+    <path id="CH" class="country visited" title="Schweiz" d="…Pfad für CH…"/>
+    <!-- Mexiko -->
+    <path id="MX" class="country visited" title="Mexiko" d="…Pfad für MX…"/>
+    <!-- Thailand -->
+    <path id="TH" class="country visited" title="Thailand" d="…Pfad für TH…"/>
+    <!-- Indonesien -->
+    <path id="ID" class="country visited" title="Indonesien" d="…Pfad für ID…"/>
+    <!-- Sri Lanka -->
+    <path id="LK" class="country visited" title="Sri Lanka" d="…Pfad für LK…"/>
+    <!-- Restliche Länder -->
+    <path id="US" class="country" title="USA" d="…Pfad für US…"/>
+    <!-- … -->
   </svg>
 </body>
 </html>
