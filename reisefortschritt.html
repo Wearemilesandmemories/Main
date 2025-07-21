@@ -2,8 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Reiseländer Fortschritt</title>
+  <title>Reise-Fortschritt</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,20 +13,26 @@
       padding: 40px;
     }
     #chart-container {
-      max-width: 360px;
+      position: relative;
+      width: 300px;
       margin: auto;
     }
-    .title {
+    .chart-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 20px;
-      margin-bottom: 15px;
+      font-weight: bold;
       color: #333;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div id="chart-container">
-    <div class="title">Bereiste Länder: 7 / 29</div>
     <canvas id="countryChart"></canvas>
+    <div class="chart-label">7 / 29</div>
   </div>
 
   <script>
@@ -35,10 +42,9 @@
       data: {
         labels: ['Bereist', 'Offen'],
         datasets: [{
-          label: 'Reise-Fortschritt',
           data: [7, 22],
-          backgroundColor: ['#f4a300', '#ddd'],
-          borderColor: ['#ffffff', '#ffffff'],
+          backgroundColor: ['#f4a300', '#e0e0e0'],
+          borderColor: '#ffffff',
           borderWidth: 2
         }]
       },
@@ -52,9 +58,7 @@
           tooltip: {
             callbacks: {
               label: function(context) {
-                const label = context.label || '';
-                const value = context.raw || 0;
-                return `${label}: ${value} Länder`;
+                return `${context.label}: ${context.raw} Länder`;
               }
             }
           }
