@@ -2,48 +2,81 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Balkendiagramm Reise-Fortschritt</title>
+  <title>Reise-Fortschritt (1 Balken)</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 40px;
       background: #fffefc;
+      padding: 60px 20px;
       text-align: center;
     }
     canvas {
-      max-width: 400px;
+      max-width: 600px;
       margin: auto;
+    }
+    h2 {
+      margin-bottom: 40px;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <h2>Reise-Fortschritt</h2>
-  <canvas id="barChart"></canvas>
+  <h2>Reise-Fortschritt: 7 von 29 Ländern</h2>
+  <canvas id="progressChart"></canvas>
 
   <script>
-    const ctx = document.getElementById('barChart').getContext('2d');
-    const barChart = new Chart(ctx, {
+    const totalCountries = 29;
+    const visited = 7;
+
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    const chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Bereist', 'Noch offen'],
+        labels: [''],
         datasets: [{
-          label: 'Länder',
-          data: [7, 22],
-          backgroundColor: ['#f4a300', '#ddd'],
-          borderWidth: 1
+          label: 'Bereist',
+          data: [visited],
+          backgroundColor: '#f4a300',
+          borderRadius: 10,
+          barThickness: 30,
         }]
       },
       options: {
-        indexAxis: 'y', // Horizontal
+        indexAxis: 'y',
+        animation: {
+          duration: 1500,
+          easing: 'easeOutQuart'
+        },
+        responsive: true,
         scales: {
           x: {
-            beginAtZero: true,
-            max: 29
+            min: 0,
+            max: totalCountries,
+            display: true,
+            ticks: {
+              stepSize: 1
+            },
+            title: {
+              display: true,
+              text: 'Anzahl Länder',
+              color: '#666'
+            },
+            grid: {
+              drawTicks: false
+            }
+          },
+          y: {
+            display: false
           }
         },
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: () => `${visited} von ${totalCountries} Ländern`
+            }
+          }
         }
       }
     });
