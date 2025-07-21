@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Besuchte Länder</title>
+  <style>
+    body, html { margin: 0; padding: 0; }
+    svg { width: 100%; height: auto; display: block; }
+    .country { fill: #ddd; stroke: #555; stroke-width: 0.3; transition: fill 0.2s; }
+    .visited { fill: #F4A300; }
+    .country:hover { fill: #999; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1001">
+    <g id="countries">
+      <!-- Diese Pfade sind symbolisch – in einer echten Weltkarte müsstest du vollständige Pfade ergänzen -->
+      <title>Interaktive Weltkarte (Demo-Version)</title>
+      <rect x="600" y="400" width="20" height="10" class="country visited"><title>Schweiz</title></rect>
+      <rect x="250" y="500" width="30" height="15" class="country visited"><title>Mexiko</title></rect>
+      <rect x="1200" y="450" width="30" height="15" class="country visited"><title>Thailand</title></rect>
+      <rect x="1300" y="550" width="30" height="15" class="country visited"><title>Indonesien</title></rect>
+      <rect x="1350" y="600" width="20" height="10" class="country visited"><title>Sri Lanka</title></rect>
+    </g>
+  </svg>
+</body>
+</html>
