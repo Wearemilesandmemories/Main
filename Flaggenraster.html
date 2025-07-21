@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Flaggenraster</title>
+  <title>Flaggenraster mit echten Flaggen</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,11 +14,19 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       max-width: 600px;
       margin: auto;
     }
-    .flag {
+    .flag-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #f4a300;
+      object-fit: cover;
+      box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    }
+    .flag-placeholder {
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -26,49 +34,46 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 20px;
       color: white;
-    }
-    .visited {
-      background-color: #f4a300;
     }
   </style>
 </head>
 <body>
   <h2>Bereiste Länder (7 von 29)</h2>
   <div class="grid">
-    <!-- 7 bereiste Länder -->
-    <div class="flag visited">🇨🇭</div>
-    <div class="flag visited">🇲🇽</div>
-    <div class="flag visited">🇹🇭</div>
-    <div class="flag visited">🇮🇩</div>
-    <div class="flag visited">🇱🇰</div>
-    <div class="flag visited">🇵🇹</div>
-    <div class="flag visited">🇯🇵</div>
+    <!-- Bereiste Länder – mit Flaggen -->
+    <img class="flag-img" src="https://flagcdn.com/w80/ch.png" alt="Schweiz" title="Schweiz">
+    <img class="flag-img" src="https://flagcdn.com/w80/mx.png" alt="Mexiko" title="Mexiko">
+    <img class="flag-img" src="https://flagcdn.com/w80/th.png" alt="Thailand" title="Thailand">
+    <img class="flag-img" src="https://flagcdn.com/w80/id.png" alt="Indonesien" title="Indonesien">
+    <img class="flag-img" src="https://flagcdn.com/w80/lk.png" alt="Sri Lanka" title="Sri Lanka">
+    <img class="flag-img" src="https://flagcdn.com/w80/pt.png" alt="Portugal" title="Portugal">
+    <img class="flag-img" src="https://flagcdn.com/w80/jp.png" alt="Japan" title="Japan">
 
-    <!-- 22 noch offene Länder -->
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
-    <div class="flag">🌍</div>
+    <!-- Noch offene Länder – Platzhalter -->
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
+    <div class="flag-placeholder">🌍</div>
   </div>
 </body>
 </html>
