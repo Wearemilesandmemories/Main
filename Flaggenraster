@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Flaggenraster</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffefc;
+      padding: 40px;
+      text-align: center;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .flag {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: white;
+    }
+    .visited {
+      background-color: #f4a300;
+    }
+  </style>
+</head>
+<body>
+  <h2>Bereiste Länder (7 von 29)</h2>
+  <div class="grid">
+    <!-- 7 bereiste Länder -->
+    <div class="flag visited">🇨🇭</div>
+    <div class="flag visited">🇲🇽</div>
+    <div class="flag visited">🇹🇭</div>
+    <div class="flag visited">🇮🇩</div>
+    <div class="flag visited">🇱🇰</div>
+    <div class="flag visited">🇵🇹</div>
+    <div class="flag visited">🇯🇵</div>
+
+    <!-- 22 noch offene Länder -->
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+    <div class="flag">🌍</div>
+  </div>
+</body>
+</html>
