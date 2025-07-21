@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Animierter Reise-Zähler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffefc;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .counter {
+      font-size: 48px;
+      font-weight: bold;
+      color: #f4a300;
+    }
+    .subtitle {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="counter" id="count">0</div>
+  <div class="subtitle">von 29 Ländern bereist</div>
+
+  <script>
+    let count = 0;
+    const target = 7;
+    const counter = document.getElementById("count");
+
+    function updateCounter() {
+      if (count < target) {
+        count++;
+        counter.innerText = count;
+        setTimeout(updateCounter, 100);
+      } else {
+        counter.innerText = target;
+      }
+    }
+
+    updateCounter();
+  </script>
+</body>
+</html>
