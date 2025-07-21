@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Reiseländer Fortschritt</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffefc;
+      text-align: center;
+      padding: 40px;
+    }
+    #chart-container {
+      max-width: 360px;
+      margin: auto;
+    }
+    .title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart-container">
+    <div class="title">Bereiste Länder: 7 / 29</div>
+    <canvas id="countryChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('countryChart').getContext('2d');
+    const countryChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Bereist', 'Offen'],
+        datasets: [{
+          label: 'Reise-Fortschritt',
+          data: [7, 22],
+          backgroundColor: ['#f4a300', '#ddd'],
+          borderColor: ['#ffffff', '#ffffff'],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        cutout: '70%',
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.raw || 0;
+                return `${label}: ${value} Länder`;
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
