@@ -76,14 +76,14 @@
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.9 && !chartInitialized) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 1.0 && !chartInitialized) {
           initChart();
           chartInitialized = true;
           observer.disconnect();
         }
       });
     }, {
-      threshold: 0.9 // Erst bei 90 % Sichtbarkeit
+      threshold: 1.0 // Erst bei 90 % Sichtbarkeit
     });
 
     observer.observe(document.getElementById('chart-container'));
