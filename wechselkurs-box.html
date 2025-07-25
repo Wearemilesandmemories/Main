@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wechselkurs</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #fffbe6;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .header img {
+      width: 36px;
+      height: 24px;
+      border-radius: 4px;
+    }
+    .rate {
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      margin: 10px 0;
+    }
+    .date {
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="header">
+      <img src="https://flagcdn.com/us.svg" alt="USA Flagge">
+      <div><strong>USD → CHF</strong></div>
+    </div>
+    <div class="rate">1 USD = <span id="kurswert">0.91</span> CHF</div>
+    <div class="date">Stand: <span id="datum"></span></div>
+  </div>
+
+  <script>
+    // Datum automatisch aktualisieren
+    const today = new Date();
+    const formatDate = today.toLocaleDateString('de-CH', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+    document.getElementById('datum').textContent = formatDate;
+  </script>
+</body>
+</html>
