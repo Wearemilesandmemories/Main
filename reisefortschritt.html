@@ -53,6 +53,10 @@
         },
         options: {
           responsive: true,
+          animation: {
+            duration: 2000, // langsamer (2 Sekunden)
+            easing: 'easeOutQuart' // sanfter Kurvenverlauf
+          },
           cutout: '70%',
           plugins: {
             legend: {
@@ -70,7 +74,6 @@
       });
     }
 
-    // Sichtbarkeits-Überwachung mit IntersectionObserver
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.9 && !chartInitialized) {
@@ -79,8 +82,8 @@
           observer.disconnect();
         }
       });
-      }, {
-  threshold: 1.0
+    }, {
+      threshold: 0.9 // Erst bei 90 % Sichtbarkeit
     });
 
     observer.observe(document.getElementById('chart-container'));
