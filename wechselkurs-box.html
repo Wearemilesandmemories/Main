@@ -66,6 +66,7 @@
       <option value="THB-CHF">Thailand (THB → CHF)</option>
       <option value="MXN-CHF">Mexiko (MXN → CHF)</option>
       <option value="IDR-CHF">Indonesien (IDR → CHF)</option>
+      <option value="CHF-CHF">Schweiz (CHF → CHF)</option>
     </select>
   </div>
 
@@ -75,7 +76,7 @@
       const response = await fetch(`https://api.exchangerate.host/latest?base=${from}&symbols=${to}`);
       const data = await response.json();
       return {
-        rate: data.rates[to].toFixed(4),
+        rate: (data.rates?.[to] ?? 1).toFixed(4),
         date: data.date,
         from,
         to
@@ -87,7 +88,8 @@
       EUR: "eu",
       THB: "th",
       MXN: "mx",
-      IDR: "id"
+      IDR: "id",
+      CHF: "ch"
     };
 
     function updateDisplay({ rate, date, from, to }) {
