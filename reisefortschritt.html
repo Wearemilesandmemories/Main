@@ -36,35 +36,52 @@
   </div>
 
   <script>
-    const ctx = document.getElementById('countryChart').getContext('2d');
-    const countryChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Bereist', 'Offen'],
-        datasets: [{
-          data: [7, 22],
-          backgroundColor: ['#F1A805', '#e0e0e0'],
-          borderColor: '#ffffff',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        cutout: '70%',
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                return `${context.label}: ${context.raw} Länder`;
+    let chartInitialized = false;
+
+    function initChart() {
+      const ctx = document.getElementById('countryChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Bereist', 'Offen'],
+          datasets: [{
+            data: [7, 22],
+            backgroundColor: ['#F1A805', '#e0e0e0'],
+            borderColor: '#ffffff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `${context.label}: ${context.raw} Länder`;
+                }
               }
             }
           }
         }
-      }
+      });
+    }
+
+    // Sichtbarkeits-Überwachung mit IntersectionObserver
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !chartInitialized) {
+          initChart();
+          chartInitialized = true;
+          observer.disconnect();
+        }
+      });
     });
+
+    observer.observe(document.getElementById('chart-container'));
   </script>
 </body>
 </html>
