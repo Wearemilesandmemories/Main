@@ -79,6 +79,8 @@
           observer.disconnect();
         }
       });
+      }, {
+  threshold: 1.0
     });
 
     observer.observe(document.getElementById('chart-container'));
