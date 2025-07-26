@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Lightbox Galerie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: transparent;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    /* Lightbox Overlay */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .close, .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 32px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+    .close {
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+    }
+    .prev { left: 40px; }
+    .next { right: 40px; }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <img src="https://source.unsplash.com/300x200/?bali" alt="Bali">
+    <img src="https://source.unsplash.com/300x200/?mexico" alt="Mexiko">
+    <img src="https://source.unsplash.com/300x200/?thailand" alt="Thailand">
+    <img src="https://source.unsplash.com/300x200/?indonesia" alt="Indonesien">
+    <img src="https://source.unsplash.com/300x200/?srilanka" alt="Sri Lanka">
+  </div>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="close">&times;</span>
+    <span class="prev" id="prev">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="next" id="next">&#10095;</span>
+  </div>
+
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+    let currentIndex = 0;
+
+    function showImage(index) {
+      lightboxImg.src = galleryImages[index].src;
+      currentIndex = index;
+      lightbox.style.display = 'flex';
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => showImage(index));
+    });
+
+    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+    nextBtn.addEventListener('click', () => showImage((currentIndex + 1) % galleryImages.length));
+    prevBtn.addEventListener('click', () => showImage((currentIndex - 1 + galleryImages.length) % galleryImages.length));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+  </script>
+</body>
+</html>
