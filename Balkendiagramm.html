@@ -28,24 +28,21 @@
       width: 0;
       background: linear-gradient(90deg, #97B6B1, #6E8E88);
       border-radius: 15px;
-      transition: width 3.5s cubic-bezier(0.25, 1, 0.5, 1);
       display: flex;
       align-items: center;
-      justify-content: center;   /* ✅ Text jetzt zentriert */
+      justify-content: center;
       color: rgba(255,255,255,0.95);
       font-weight: 500;
       font-size: 14px;
       position: relative;
       z-index: 1;
     }
-    /* Flugzeug */
     .plane {
       position: absolute;
       top: 5px;
       left: 0;
       width: 20px;
       height: 20px;
-      transition: left 3.5s cubic-bezier(0.25, 1, 0.5, 1);
       animation: planeWiggle 0.6s infinite ease-in-out;
       z-index: 2;
     }
@@ -53,7 +50,6 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-2px); }
     }
-    /* Schweif */
     .trail {
       position: absolute;
       top: 13px;
@@ -62,7 +58,6 @@
       border-radius: 2px;
       left: 0;
       width: 0;
-      transition: width 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-out;
       opacity: 1;
       z-index: 0;
     }
@@ -80,20 +75,32 @@
   </div>
 
   <script>
-    const visited = 14;
+    const visited = 7;   // ✅ Anzahl besuchter Länder hier anpassen
     const total = 29;
     const percent = Math.round((visited / total) * 100);
 
+    // ✅ Dynamische Dauer abhängig vom Fortschritt (0.05s pro Prozent)
+    let duration = percent * 0.05;
+    if (duration < 1.5) duration = 1.5;   // Mindestzeit
+    if (duration > 5) duration = 5;       // Maximalzeit
+
+    // Elemente
     const bar = document.getElementById('bar');
     const plane = document.getElementById('plane');
     const trail = document.getElementById('trail');
 
+    // Dynamische Animation anwenden
+    bar.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
+    plane.style.transition = `left ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
+    trail.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1), opacity 2s ease-out`;
+
+    // Animation starten
     setTimeout(() => {
       bar.style.width = percent + '%';
       bar.textContent = percent + '%';
-      plane.style.left = `calc(${percent}% - 12px)`;
-      trail.style.width = `calc(${percent}% - 5px)`;
-      setTimeout(() => trail.style.opacity = 0.4, 3000);
+      plane.style.left = `calc(${percent}% - 20px)`; // ✈️ leicht vor der Balkenkante
+      trail.style.width = `calc(${percent}% - 10px)`;
+      setTimeout(() => trail.style.opacity = 0.4, duration * 1000);
     }, 300);
   </script>
 
