@@ -1,100 +1,117 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Flipcard – Bali To-Dos</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 40px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Segoe UI', sans-serif;
-      background: transparent;
-    }
+<meta charset="UTF-8">
+<title>Flipcard – To-Dos Bali</title>
+<style>
+  body {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
 
-    .flipcard-wrapper {
-      perspective: 1000px;
-      width: 320px;
-      height: 220px;
-    }
+  .flip-card {
+    background: transparent;
+    width: 280px;
+    height: 180px;
+    perspective: 1000px;
+  }
 
-    .flipcard {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.8s;
-      cursor: pointer;
-    }
+  .flip-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-style: preserve-3d;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    cursor: pointer;
+  }
 
-    .flipcard:hover {
-      transform: rotateY(180deg);
-    }
+  .flip-card.hover .flip-inner {
+    transform: rotateY(180deg);
+  }
 
-    .flipcard-side {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  .flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafa 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #333;
+    padding: 15px;
+  }
 
-    .front {
-      background: #F4A300;
-      color: white;
-    }
+  .flip-front {
+    font-size: 20px;
+    font-weight: 500;
+    color: #444;
+    border: 1px solid #e0e0e0;
+  }
 
-    .back {
-      background: white;
-      color: #333;
-      transform: rotateY(180deg);
-    }
+  .flip-back {
+    transform: rotateY(180deg);
+    border: 1px solid #97B6B1;
+    background: linear-gradient(180deg, #97B6B1 0%, #6E8E88 100%);
+    color: white;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeInText 0.4s ease forwards;
+    animation-delay: 0.3s;
+  }
 
-    .front h3 {
-      margin-top: 0;
-      font-size: 20px;
-      text-align: center;
-    }
+  @keyframes fadeInText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .back h4 {
-      margin-top: 0;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+  .flip-back ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
 
-    .back ul {
-      padding-left: 20px;
-      margin: 0;
-    }
-
-    .back li {
-      margin-bottom: 8px;
-    }
-  </style>
+  .flip-back li {
+    margin: 4px 0;
+  }
+</style>
 </head>
 <body>
-  <div class="flipcard-wrapper">
-    <div class="flipcard">
-      <div class="flipcard-side front">
-        <h3>🌴 To-Dos auf Bali</h3>
-        <p style="text-align: center;">Klick mich!</p>
+
+  <div class="flip-card" id="flipcard">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div>To-Dos Bali</div>
       </div>
-      <div class="flipcard-side back">
-        <h4>Highlights:</h4>
+      <div class="flip-back">
         <ul>
+          <li>🌴 Tempelbesuch in Uluwatu</li>
           <li>🏄 Surfen in Canggu</li>
-          <li>⛰️ Mount Batur Sonnenaufgang</li>
-          <li>🍜 Streetfood in Ubud</li>
-          <li>🛕 Tempel Pura Ulun Danu</li>
-          <li>🐒 Affenwald in Ubud</li>
+          <li>🥥 Strandbar in Seminyak</li>
+          <li>🌋 Sonnenaufgang am Mount Batur</li>
         </ul>
       </div>
     </div>
   </div>
+
+<script>
+  const flip = document.getElementById('flipcard');
+  // Hover für Desktop
+  flip.addEventListener('mouseenter', () => flip.classList.add('hover'));
+  flip.addEventListener('mouseleave', () => flip.classList.remove('hover'));
+  // Klick für Mobile
+  flip.addEventListener('click', () => flip.classList.toggle('hover'));
+</script>
+
 </body>
 </html>
