@@ -2,108 +2,197 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Unsere Packliste</title>
+  <title>Packliste</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
       background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      padding: 20px;
       margin: 0;
     }
-
-    .packliste-container {
-      max-width: 400px;
-      width: 90%;
-      background: white;
-      border: 2px solid #F4A300;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      padding: 25px;
-    }
-
-    .packliste-container h2 {
-      background-color: #F4A300;
-      color: white;
-      text-align: center;
-      padding: 12px;
+    .packliste {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffffcc;
+      border: 1px solid #97B6B1;
       border-radius: 12px;
-      font-size: 22px;
-      margin-bottom: 25px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
-    ul.packliste {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    h2 {
+      color: #444;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 15px;
     }
-
-    ul.packliste li {
-      margin-bottom: 12px;
+    .category {
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 8px;
     }
-
-    ul.packliste label {
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 5px;
+      font-weight: 500;
+      color: #333;
+      transition: background 0.2s ease;
+    }
+    .category-header:hover {
+      background: rgba(151,182,177,0.08);
+    }
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+    .arrow.open {
+      transform: rotate(90deg);
+    }
+    .item-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 5px;
+    }
+    .item-list.open {
+      max-height: 500px;
+    }
+    li {
       display: flex;
       align-items: center;
-      gap: 10px;
-      cursor: pointer;
+      padding: 6px 0;
+      font-size: 16px;
+      color: #333;
+      transition: background 0.2s ease;
     }
-
-    ul.packliste input[type="checkbox"] {
-      transform: scale(1.3);
-      accent-color: #F4A300;
+    input[type="checkbox"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #97B6B1;
+      border-radius: 4px;
+      margin-right: 10px;
       cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
     }
-
-    .strikethrough {
+    input[type="checkbox"]:checked {
+      background: #97B6B1;
+      border-color: #6E8E88;
+    }
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: white;
+      font-size: 14px;
+      position: absolute;
+      top: -2px;
+      left: 3px;
+    }
+    li.checked span {
       text-decoration: line-through;
-      opacity: 0.6;
+      color: #777;
+    }
+    .counter {
+      font-size: 14px;
+      color: #6E8E88;
     }
   </style>
 </head>
 <body>
-  <div class="packliste-container">
-    <h2>🎒 Unsere Packliste</h2>
-    <ul class="packliste">
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Reisepass</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Kreditkarte</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Sonnencreme</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Badesachen</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Kamera</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('strikethrough')">
-          <span>Reiseapotheke</span>
-        </label>
-      </li>
-    </ul>
+
+  <div class="packliste">
+    <h2>🧳 Packliste</h2>
+
+    <div class="category" data-category="dokumente">
+      <div class="category-header">
+        <span>📄 Dokumente</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+      </div>
+      <ul class="item-list">
+        <li><input type="checkbox"> <span>Reisepass</span></li>
+        <li><input type="checkbox"> <span>Flugtickets</span></li>
+        <li><input type="checkbox"> <span>Versicherungsnachweis</span></li>
+      </ul>
+    </div>
+
+    <div class="category" data-category="kleidung">
+      <div class="category-header">
+        <span>👕 Kleidung</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+      </div>
+      <ul class="item-list">
+        <li><input type="checkbox"> <span>T-Shirts</span></li>
+        <li><input type="checkbox"> <span>Badehose</span></li>
+        <li><input type="checkbox"> <span>Regenjacke</span></li>
+      </ul>
+    </div>
+
+    <div class="category" data-category="technik">
+      <div class="category-header">
+        <span>📷 Technik</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+      </div>
+      <ul class="item-list">
+        <li><input type="checkbox"> <span>Kamera</span></li>
+        <li><input type="checkbox"> <span>Ladegeräte</span></li>
+        <li><input type="checkbox"> <span>Reiseadapter</span></li>
+      </ul>
+    </div>
   </div>
+
+  <script>
+    // 🔹 localStorage Keys
+    const STORAGE_KEY = "packlisteStatus";
+    let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+    // 🔹 Init Kategorien
+    document.querySelectorAll(".category").forEach(category => {
+      const list = category.querySelector(".item-list");
+      const header = category.querySelector(".category-header");
+      const arrow = category.querySelector(".arrow");
+      const checkboxes = category.querySelectorAll("input[type='checkbox']");
+      const counter = category.querySelector(".counter");
+      const categoryKey = category.dataset.category;
+
+      // Lade gespeicherten Status
+      checkboxes.forEach((cb, idx) => {
+        if (savedStatus[categoryKey]?.includes(idx)) {
+          cb.checked = true;
+          cb.closest("li").classList.add("checked");
+        }
+      });
+
+      updateCounter();
+
+      // Akkordeon Toggle
+      header.addEventListener("click", () => {
+        list.classList.toggle("open");
+        arrow.classList.toggle("open");
+      });
+
+      // Checkbox Handling + Speicherung
+      checkboxes.forEach((cb, idx) => {
+        cb.addEventListener("change", () => {
+          cb.closest("li").classList.toggle("checked", cb.checked);
+
+          if (!savedStatus[categoryKey]) savedStatus[categoryKey] = [];
+          if (cb.checked) {
+            savedStatus[categoryKey].push(idx);
+          } else {
+            savedStatus[categoryKey] = savedStatus[categoryKey].filter(i => i !== idx);
+          }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(savedStatus));
+          updateCounter();
+        });
+      });
+
+      function updateCounter() {
+        const total = checkboxes.length;
+        const checked = Array.from(checkboxes).filter(c => c.checked).length;
+        counter.textContent = `(${checked}/${total})`;
+      }
+    });
+  </script>
+
 </body>
 </html>
