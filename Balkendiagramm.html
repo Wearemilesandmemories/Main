@@ -16,9 +16,9 @@
     .progress-container {
       width: 80%;
       max-width: 420px;
-      height: 26px;
+      height: 30px;
       background: #ececec;
-      border-radius: 14px;
+      border-radius: 15px;
       overflow: hidden;
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
       position: relative;
@@ -27,8 +27,8 @@
       height: 100%;
       width: 0;
       background: linear-gradient(90deg, #97B6B1, #6E8E88);
-      border-radius: 14px;
-      transition: width 2.5s ease;
+      border-radius: 15px;
+      transition: width 2.8s cubic-bezier(0.25, 1, 0.5, 1); /* sanftes Abbremseffekt */
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -40,26 +40,29 @@
     /* Flugzeug */
     .plane {
       position: absolute;
-      top: -18px;
+      top: 4px; /* jetzt im Balken sichtbar */
       left: 0;
-      font-size: 18px;
-      transition: left 2.5s ease;
+      font-size: 20px;
+      transition: left 2.8s cubic-bezier(0.25, 1, 0.5, 1);
       animation: planeWiggle 0.6s infinite ease-in-out;
+      z-index: 2;
     }
     @keyframes planeWiggle {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-2px); }
     }
-    /* Schweif (leichter Strich hinter Flugzeug) */
+    /* Schweif */
     .trail {
       position: absolute;
-      top: -6px;
-      height: 6px;
+      top: 13px;
+      height: 4px;
       background: rgba(255,255,255,0.3);
-      border-radius: 3px;
+      border-radius: 2px;
       left: 0;
       width: 0;
-      transition: width 2.5s ease;
+      transition: width 2.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-out;
+      opacity: 1;
+      z-index: 1;
     }
   </style>
 </head>
@@ -83,8 +86,9 @@
     setTimeout(() => {
       bar.style.width = percent + '%';
       bar.textContent = percent + '%';
-      plane.style.left = `calc(${percent}% - 10px)`;
+      plane.style.left = `calc(${percent}% - 15px)`;
       trail.style.width = `calc(${percent}% - 5px)`;
+      setTimeout(() => trail.style.opacity = 0.4, 3000); // Schweif wird dezenter
     }, 300);
   </script>
 
