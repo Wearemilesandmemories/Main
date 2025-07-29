@@ -41,14 +41,18 @@
       position: absolute;
       top: 5px;
       left: 0;
-      width: 20px;
-      height: 20px;
-      animation: planeWiggle 0.6s infinite ease-in-out;
+      width: 22px;
+      height: 22px;
+      transition: left 4s cubic-bezier(0.25, 1, 0.5, 1);
+      animation: planeFlight 0.8s infinite ease-in-out;
+      transform-origin: center;
       z-index: 2;
     }
-    @keyframes planeWiggle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-2px); }
+    /* ✈️ Neues Keyframe: Wackeln + Flugneigung */
+    @keyframes planeFlight {
+      0%   { transform: rotate(-10deg) translateY(0); }
+      50%  { transform: rotate(-8deg) translateY(-2px); }
+      100% { transform: rotate(-10deg) translateY(0); }
     }
     .trail {
       position: absolute;
@@ -75,21 +79,21 @@
   </div>
 
   <script>
-    const visited = 15;   // ✅ Anzahl besuchter Länder hier anpassen
+    const visited = 15;  // ✅ Länderanzahl hier anpassen
     const total = 29;
     const percent = Math.round((visited / total) * 100);
 
-    // ✅ Dynamische Dauer abhängig vom Fortschritt (0.05s pro Prozent)
+    // ⏳ Dynamische Zeitberechnung
     let duration = percent * 0.05;
-    if (duration < 1.5) duration = 1.5;   // Mindestzeit
-    if (duration > 5) duration = 5;       // Maximalzeit
+    if (duration < 1.5) duration = 1.5;
+    if (duration > 5) duration = 5;
 
     // Elemente
     const bar = document.getElementById('bar');
     const plane = document.getElementById('plane');
     const trail = document.getElementById('trail');
 
-    // Dynamische Animation anwenden
+    // Dynamische Transition anwenden
     bar.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
     plane.style.transition = `left ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
     trail.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1), opacity 2s ease-out`;
@@ -98,8 +102,8 @@
     setTimeout(() => {
       bar.style.width = percent + '%';
       bar.textContent = percent + '%';
-      plane.style.left = `calc(${percent}% - 20px)`; // ✈️ leicht vor der Balkenkante
-      trail.style.width = `calc(${percent}% - 10px)`;
+      plane.style.left = `calc(${percent}% - 22px)`; // ✈️ leicht vor der Kante
+      trail.style.width = `calc(${percent}% - 12px)`;
       setTimeout(() => trail.style.opacity = 0.4, duration * 1000);
     }, 300);
   </script>
