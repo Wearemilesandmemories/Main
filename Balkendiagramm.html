@@ -31,12 +31,14 @@
       transition: width 2.8s cubic-bezier(0.25, 1, 0.5, 1);
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding-right: 14px;
+      justify-content: center;   /* ✅ Text jetzt zentriert */
       color: rgba(255,255,255,0.95);
       font-weight: 500;
       font-size: 14px;
+      position: relative;
+      z-index: 1;
     }
+    /* Flugzeug */
     .plane {
       position: absolute;
       top: 5px;
@@ -51,6 +53,7 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-2px); }
     }
+    /* Schweif */
     .trail {
       position: absolute;
       top: 13px;
@@ -61,14 +64,14 @@
       width: 0;
       transition: width 2.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-out;
       opacity: 1;
-      z-index: 1;
+      z-index: 0;
     }
   </style>
 </head>
 <body>
 
   <div class="progress-container">
-    <!-- SVG Flugzeug statt Emoji -->
+    <!-- SVG Flugzeug -->
     <svg class="plane" id="plane" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
       <path d="M2 16l20-8-20-8v6l14 2-14 2v6z"/>
     </svg>
