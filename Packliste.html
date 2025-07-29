@@ -15,65 +15,83 @@
     }
     .packliste {
       width: 100%;
-      max-width: 420px;
-      background: #ffffffcc;
-      border: 1px solid #97B6B1;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      max-width: 440px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafa 100%);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
     h2 {
       color: #444;
       font-weight: 500;
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .category {
-      border-bottom: 1px solid #f0f0f0;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e6e6e6;
     }
     .category-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      padding: 10px 5px;
-      font-weight: 500;
-      color: #333;
+      padding: 10px 12px;
+      background: #fff;
+      border-left: 4px solid #97B6B1;
       transition: background 0.2s ease;
     }
     .category-header:hover {
       background: rgba(151,182,177,0.08);
     }
     .arrow {
+      width: 14px;
+      height: 14px;
       transition: transform 0.3s ease;
+      fill: #6E8E88;
     }
     .arrow.open {
       transform: rotate(90deg);
     }
+    .counter {
+      font-size: 13px;
+      color: #6E8E88;
+      margin-right: 8px;
+    }
     .item-list {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 5px;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      padding: 0 12px;
     }
     .item-list.open {
       max-height: 500px;
+      opacity: 1;
     }
     li {
       display: flex;
       align-items: center;
-      padding: 6px 0;
+      padding: 8px 0;
       font-size: 16px;
       color: #333;
+      border-bottom: 1px solid #f0f0f0;
       transition: background 0.2s ease;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    li:hover {
+      background: rgba(151,182,177,0.05);
     }
     input[type="checkbox"] {
       appearance: none;
       width: 18px;
       height: 18px;
       border: 2px solid #97B6B1;
-      border-radius: 4px;
+      border-radius: 3px;
       margin-right: 10px;
       cursor: pointer;
       position: relative;
@@ -84,20 +102,19 @@
       border-color: #6E8E88;
     }
     input[type="checkbox"]:checked::after {
-      content: "✓";
-      color: white;
-      font-size: 14px;
+      content: "";
       position: absolute;
-      top: -2px;
-      left: 3px;
+      top: 2px;
+      left: 5px;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
     }
     li.checked span {
       text-decoration: line-through;
       color: #777;
-    }
-    .counter {
-      font-size: 14px;
-      color: #6E8E88;
     }
   </style>
 </head>
@@ -108,44 +125,48 @@
 
     <div class="category" data-category="dokumente">
       <div class="category-header">
-        <span>📄 Dokumente</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+        <span>📄 Dokumente</span>
+        <span class="counter">(0/3)</span>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
       <ul class="item-list">
-        <li><input type="checkbox"> <span>Reisepass</span></li>
-        <li><input type="checkbox"> <span>Flugtickets</span></li>
-        <li><input type="checkbox"> <span>Versicherungsnachweis</span></li>
+        <li><input type="checkbox"><span>Reisepass</span></li>
+        <li><input type="checkbox"><span>Flugtickets</span></li>
+        <li><input type="checkbox"><span>Versicherungsnachweis</span></li>
       </ul>
     </div>
 
     <div class="category" data-category="kleidung">
       <div class="category-header">
-        <span>👕 Kleidung</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+        <span>👕 Kleidung</span>
+        <span class="counter">(0/3)</span>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
       <ul class="item-list">
-        <li><input type="checkbox"> <span>T-Shirts</span></li>
-        <li><input type="checkbox"> <span>Badehose</span></li>
-        <li><input type="checkbox"> <span>Regenjacke</span></li>
+        <li><input type="checkbox"><span>T-Shirts</span></li>
+        <li><input type="checkbox"><span>Badehose</span></li>
+        <li><input type="checkbox"><span>Regenjacke</span></li>
       </ul>
     </div>
 
     <div class="category" data-category="technik">
       <div class="category-header">
-        <span>📷 Technik</span> <span class="counter">(0/3)</span> <span class="arrow">▶</span>
+        <span>📷 Technik</span>
+        <span class="counter">(0/3)</span>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
       <ul class="item-list">
-        <li><input type="checkbox"> <span>Kamera</span></li>
-        <li><input type="checkbox"> <span>Ladegeräte</span></li>
-        <li><input type="checkbox"> <span>Reiseadapter</span></li>
+        <li><input type="checkbox"><span>Kamera</span></li>
+        <li><input type="checkbox"><span>Ladegeräte</span></li>
+        <li><input type="checkbox"><span>Reiseadapter</span></li>
       </ul>
     </div>
   </div>
 
   <script>
-    // 🔹 localStorage Keys
-    const STORAGE_KEY = "packlisteStatus";
+    const STORAGE_KEY = "packlisteStatus_v2";
     let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
-    // 🔹 Init Kategorien
     document.querySelectorAll(".category").forEach(category => {
       const list = category.querySelector(".item-list");
       const header = category.querySelector(".category-header");
@@ -161,20 +182,18 @@
           cb.closest("li").classList.add("checked");
         }
       });
-
       updateCounter();
 
-      // Akkordeon Toggle
+      // Toggle Akkordeon
       header.addEventListener("click", () => {
         list.classList.toggle("open");
         arrow.classList.toggle("open");
       });
 
-      // Checkbox Handling + Speicherung
+      // Checkbox-Logik
       checkboxes.forEach((cb, idx) => {
         cb.addEventListener("change", () => {
           cb.closest("li").classList.toggle("checked", cb.checked);
-
           if (!savedStatus[categoryKey]) savedStatus[categoryKey] = [];
           if (cb.checked) {
             savedStatus[categoryKey].push(idx);
