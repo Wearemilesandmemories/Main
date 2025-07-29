@@ -10,13 +10,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       margin: 0;
+      height: 100%;
     }
     .progress-container {
-      width: 80%;
-      max-width: 420px;
-      height: 30px;
+      width: 100%;            /* ✅ füllt immer den Container */
+      height: 12vw;           /* ✅ skaliert dynamisch (z.B. 12% der Breite) */
+      max-height: 40px;       /* ✅ bleibt aber schlank */
       background: #ececec;
       border-radius: 15px;
       overflow: hidden;
@@ -33,31 +33,31 @@
       justify-content: center;
       color: rgba(255,255,255,0.95);
       font-weight: 500;
-      font-size: 14px;
+      font-size: calc(0.5em + 0.6vw);  /* ✅ Text skaliert mit */
       position: relative;
       z-index: 1;
     }
     .plane {
       position: absolute;
-      top: 5px;
+      top: 15%;
       left: 0;
-      width: 22px;
-      height: 22px;
+      width: 6%;     /* ✅ skaliert mit Containerbreite */
+      height: auto;
       transition: left 4s cubic-bezier(0.25, 1, 0.5, 1);
       animation: planeFlight 0.8s infinite ease-in-out;
       transform-origin: center;
       z-index: 2;
     }
-    /* ✈️ Neues Keyframe: Wackeln + Flugneigung */
     @keyframes planeFlight {
       0%   { transform: rotate(-10deg) translateY(0); }
-      50%  { transform: rotate(-8deg) translateY(-2px); }
+      50%  { transform: rotate(-8deg) translateY(-4%); }
       100% { transform: rotate(-10deg) translateY(0); }
     }
     .trail {
       position: absolute;
-      top: 13px;
-      height: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 15%;
       background: rgba(255,255,255,0.3);
       border-radius: 2px;
       left: 0;
@@ -70,7 +70,6 @@
 <body>
 
   <div class="progress-container">
-    <!-- SVG Flugzeug -->
     <svg class="plane" id="plane" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
       <path d="M2 16l20-8-20-8v6l14 2-14 2v6z"/>
     </svg>
@@ -79,21 +78,20 @@
   </div>
 
   <script>
-    const visited = 15;  // ✅ Länderanzahl hier anpassen
+    const visited = 7;  // ✅ Anzahl besuchter Länder hier anpassen
     const total = 29;
     const percent = Math.round((visited / total) * 100);
 
-    // ⏳ Dynamische Zeitberechnung
+    // Dynamische Zeit relativ zum Fortschritt
     let duration = percent * 0.05;
     if (duration < 1.5) duration = 1.5;
     if (duration > 5) duration = 5;
 
-    // Elemente
     const bar = document.getElementById('bar');
     const plane = document.getElementById('plane');
     const trail = document.getElementById('trail');
 
-    // Dynamische Transition anwenden
+    // Transition dynamisch setzen
     bar.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
     plane.style.transition = `left ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
     trail.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1), opacity 2s ease-out`;
@@ -102,8 +100,8 @@
     setTimeout(() => {
       bar.style.width = percent + '%';
       bar.textContent = percent + '%';
-      plane.style.left = `calc(${percent}% - 22px)`; // ✈️ leicht vor der Kante
-      trail.style.width = `calc(${percent}% - 12px)`;
+      plane.style.left = `calc(${percent}% - 6%)`;  // ✈️ fliegt leicht vor
+      trail.style.width = `calc(${percent}% - 5%)`;
       setTimeout(() => trail.style.opacity = 0.4, duration * 1000);
     }, 300);
   </script>
