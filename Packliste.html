@@ -41,10 +41,22 @@
       padding: 10px 12px;
       background: #fff;
       border-left: 4px solid #97B6B1;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      font-weight: 500;
     }
     .category-header:hover {
-      background: rgba(151,182,177,0.08);
+      background: rgba(151,182,177,0.05);
+      box-shadow: inset 0 0 4px rgba(151,182,177,0.2);
+    }
+    .category-header .left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .category-header svg.icon {
+      width: 18px;
+      height: 18px;
+      fill: #6E8E88;
     }
     .arrow {
       width: 14px;
@@ -52,9 +64,7 @@
       transition: transform 0.3s ease;
       fill: #6E8E88;
     }
-    .arrow.open {
-      transform: rotate(90deg);
-    }
+    .arrow.open { transform: rotate(90deg); }
     .counter {
       font-size: 13px;
       color: #6E8E88;
@@ -71,20 +81,25 @@
       max-height: 500px;
       opacity: 1;
     }
-    li {
+    .item-list li {
       display: flex;
       align-items: center;
       padding: 8px 0;
       font-size: 16px;
+      font-weight: 400;
       color: #333;
       border-bottom: 1px solid #f0f0f0;
-      transition: background 0.2s ease;
+      opacity: 0;
+      transform: translateY(4px);
     }
-    li:last-child {
-      border-bottom: none;
+    .item-list.open li {
+      animation: fadeInItem 0.3s forwards;
     }
-    li:hover {
-      background: rgba(151,182,177,0.05);
+    .item-list.open li:nth-child(1) { animation-delay: 0.05s; }
+    .item-list.open li:nth-child(2) { animation-delay: 0.1s; }
+    .item-list.open li:nth-child(3) { animation-delay: 0.15s; }
+    @keyframes fadeInItem {
+      to { opacity: 1; transform: translateY(0); }
     }
     input[type="checkbox"] {
       appearance: none;
@@ -98,8 +113,8 @@
       transition: all 0.3s ease;
     }
     input[type="checkbox"]:checked {
-      background: #97B6B1;
-      border-color: #6E8E88;
+      background: #6E8E88;
+      border-color: #97B6B1;
     }
     input[type="checkbox"]:checked::after {
       content: "";
@@ -121,11 +136,14 @@
 <body>
 
   <div class="packliste">
-    <h2>🧳 Packliste</h2>
+    <h2>Packliste</h2>
 
     <div class="category" data-category="dokumente">
       <div class="category-header">
-        <span>📄 Dokumente</span>
+        <div class="left">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/></svg>
+          <span>Dokumente</span>
+        </div>
         <span class="counter">(0/3)</span>
         <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
@@ -138,7 +156,10 @@
 
     <div class="category" data-category="kleidung">
       <div class="category-header">
-        <span>👕 Kleidung</span>
+        <div class="left">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M16 3l5 5-1.5 1.5L18 7v14H6V7l-1.5 2.5L3 8l5-5h8z"/></svg>
+          <span>Kleidung</span>
+        </div>
         <span class="counter">(0/3)</span>
         <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
@@ -151,7 +172,10 @@
 
     <div class="category" data-category="technik">
       <div class="category-header">
-        <span>📷 Technik</span>
+        <div class="left">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/></svg>
+          <span>Technik</span>
+        </div>
         <span class="counter">(0/3)</span>
         <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
       </div>
@@ -164,7 +188,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "packlisteStatus_v2";
+    const STORAGE_KEY = "packlisteStatus_v3";
     let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
     document.querySelectorAll(".category").forEach(category => {
@@ -184,13 +208,13 @@
       });
       updateCounter();
 
-      // Toggle Akkordeon
+      // Akkordeon-Logik
       header.addEventListener("click", () => {
         list.classList.toggle("open");
         arrow.classList.toggle("open");
       });
 
-      // Checkbox-Logik
+      // Checkbox + Speicherung
       checkboxes.forEach((cb, idx) => {
         cb.addEventListener("change", () => {
           cb.closest("li").classList.toggle("checked", cb.checked);
