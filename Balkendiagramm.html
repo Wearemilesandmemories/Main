@@ -33,10 +33,9 @@
       justify-content: center;
       color: rgba(255,255,255,0.95);
       font-weight: 500;
-      font-size: 18px;   /* ✅ Größere Schrift */
+      font-size: 18px;
       position: relative;
       z-index: 1;
-      transition: width 2.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
   </style>
 </head>
@@ -50,8 +49,21 @@
     const visited = 15;   // ✅ Anzahl besuchter Länder hier anpassen
     const total = 29;
     const percent = Math.round((visited / total) * 100);
-    document.getElementById('bar').style.width = percent + '%';
-    document.getElementById('bar').textContent = percent + '%';
+    const bar = document.getElementById('bar');
+
+    // Berechne Animationsdauer dynamisch (z. B. 0.05s pro Prozent)
+    let duration = percent * 0.05;
+    if (duration < 1.5) duration = 1.5;  // Minimum
+    if (duration > 5) duration = 5;      // Maximum
+
+    // Setze Transition abhängig vom Fortschritt
+    bar.style.transition = `width ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
+
+    // Starte Animation leicht verzögert
+    setTimeout(() => {
+      bar.style.width = percent + '%';
+      bar.textContent = percent + '%';
+    }, 150);
   </script>
 
 </body>
