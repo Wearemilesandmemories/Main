@@ -5,7 +5,7 @@
   <title>Reisefortschritt</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
       background: transparent;
       display: flex;
       justify-content: center;
@@ -15,19 +15,26 @@
       margin: 0;
     }
     h2 {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       color: #444;
       font-weight: 500;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::before {
+      content: "✈️";
+      font-size: 22px;
     }
     .progress-container {
       width: 80%;
       max-width: 420px;
-      height: 28px;
-      background: #e8e8e8;
+      height: 26px;
+      background: #ececec;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
-      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     }
     .progress-bar {
       height: 100%;
@@ -38,34 +45,25 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding-right: 10px;
-      color: rgba(255,255,255,0.9);
+      padding-right: 12px;
+      color: rgba(255,255,255,0.95);
       font-weight: 500;
       font-size: 14px;
-      letter-spacing: 0.5px;
-    }
-    .progress-text {
-      margin-top: 10px;
-      font-size: 16px;
-      font-weight: 400;
-      color: #555;
+      letter-spacing: 0.4px;
     }
   </style>
 </head>
 <body>
 
-  <h2>🌍 Unser Reisefortschritt</h2>
+  <h2>Unser Reisefortschritt</h2>
   <div class="progress-container">
     <div class="progress-bar" id="bar">0%</div>
   </div>
-  <div class="progress-text" id="text"></div>
 
   <script>
     const visited = 7;
     const total = 29;
     const percent = Math.round((visited / total) * 100);
-
-    document.getElementById('text').textContent = `${visited} / ${total} Länder bereist`;
 
     const bar = document.getElementById('bar');
     setTimeout(() => {
