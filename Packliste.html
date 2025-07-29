@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Packliste</title>
+  <title>Komplette Packliste</title>
   <style>
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -15,7 +15,7 @@
     }
     .packliste {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: linear-gradient(180deg, #ffffff 0%, #f8fafa 100%);
       border-radius: 16px;
       padding: 18px;
@@ -48,199 +48,154 @@
       background: rgba(151,182,177,0.05);
       box-shadow: inset 0 0 4px rgba(151,182,177,0.2);
     }
-    .category-header .left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .category-header svg.icon {
-      width: 18px;
-      height: 18px;
-      fill: #6E8E88;
-    }
-    .arrow {
-      width: 14px;
-      height: 14px;
-      transition: transform 0.3s ease;
-      fill: #6E8E88;
-    }
+    .counter { font-size: 13px; color: #6E8E88; }
+    .arrow { width: 14px; height: 14px; fill: #6E8E88; transition: transform 0.3s ease; }
     .arrow.open { transform: rotate(90deg); }
-    .counter {
-      font-size: 13px;
-      color: #6E8E88;
-      margin-right: 8px;
-    }
-    .item-list {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
-      padding: 0 12px;
-    }
-    .item-list.open {
-      max-height: 500px;
-      opacity: 1;
-    }
-    .item-list li {
-      display: flex;
-      align-items: center;
-      padding: 8px 0;
-      font-size: 16px;
-      font-weight: 400;
-      color: #333;
-      border-bottom: 1px solid #f0f0f0;
-      opacity: 0;
-      transform: translateY(4px);
-    }
-    .item-list.open li {
-      animation: fadeInItem 0.3s forwards;
-    }
-    .item-list.open li:nth-child(1) { animation-delay: 0.05s; }
-    .item-list.open li:nth-child(2) { animation-delay: 0.1s; }
-    .item-list.open li:nth-child(3) { animation-delay: 0.15s; }
-    @keyframes fadeInItem {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    input[type="checkbox"] {
-      appearance: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid #97B6B1;
-      border-radius: 3px;
-      margin-right: 10px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    input[type="checkbox"]:checked {
-      background: #6E8E88;
-      border-color: #97B6B1;
-    }
-    input[type="checkbox"]:checked::after {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 5px;
-      width: 4px;
-      height: 8px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-    li.checked span {
-      text-decoration: line-through;
-      color: #777;
-    }
+    .item-list { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease, opacity 0.4s ease; padding: 0 12px; }
+    .item-list.open { max-height: 500px; opacity: 1; }
+    li { display: flex; align-items: center; padding: 8px 0; font-size: 16px; font-weight: 400; color: #333; border-bottom: 1px solid #f0f0f0; }
+    li:last-child { border-bottom: none; }
+    input[type="checkbox"] { appearance: none; width: 18px; height: 18px; border: 2px solid #97B6B1; border-radius: 3px; margin-right: 10px; cursor: pointer; transition: all 0.3s ease; }
+    input[type="checkbox"]:checked { background: #6E8E88; border-color: #97B6B1; }
+    input[type="checkbox"]:checked::after { content: ""; position: absolute; width: 4px; height: 8px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    li.checked span { text-decoration: line-through; color: #777; }
   </style>
 </head>
 <body>
 
-  <div class="packliste">
-    <h2>Packliste</h2>
+<div class="packliste">
+  <h2>Komplette Packliste</h2>
 
-    <!-- Dokumente -->
-    <div class="category" data-category="dokumente">
-      <div class="category-header">
-        <div class="left">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/></svg>
-          <span>Dokumente</span>
-        </div>
-        <span class="counter">(0/3)</span>
-        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
-      </div>
-      <ul class="item-list">
-        <li><input type="checkbox"><span>Reisepass</span></li>
-        <li><input type="checkbox"><span>Flugtickets</span></li>
-        <li><input type="checkbox"><span>Versicherungsnachweis</span></li>
-      </ul>
-    </div>
-
-    <!-- Kleidung -->
-    <div class="category" data-category="kleidung">
-      <div class="category-header">
-        <div class="left">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M16 3l5 5-1.5 1.5L18 7v14H6V7l-1.5 2.5L3 8l5-5h8z"/></svg>
-          <span>Kleidung</span>
-        </div>
-        <span class="counter">(0/3)</span>
-        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
-      </div>
-      <ul class="item-list">
-        <li><input type="checkbox"><span>T-Shirts</span></li>
-        <li><input type="checkbox"><span>Badehose</span></li>
-        <li><input type="checkbox"><span>Regenjacke</span></li>
-      </ul>
-    </div>
-
-    <!-- Technik -->
-    <div class="category" data-category="technik">
-      <div class="category-header">
-        <div class="left">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M4 7h3l2-2h6l2 2h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm8 3a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/>
-          </svg>
-          <span>Technik</span>
-        </div>
-        <span class="counter">(0/3)</span>
-        <svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg>
-      </div>
-      <ul class="item-list">
-        <li><input type="checkbox"><span>Kamera</span></li>
-        <li><input type="checkbox"><span>Ladegeräte</span></li>
-        <li><input type="checkbox"><span>Reiseadapter</span></li>
-      </ul>
-    </div>
+  <!-- DOKUMENTE -->
+  <div class="category" data-category="dokumente">
+    <div class="category-header"><span>Dokumente</span><span class="counter">(0/5)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Reisepass</span></li>
+      <li><input type="checkbox"><span>Visum (falls erforderlich)</span></li>
+      <li><input type="checkbox"><span>Flugtickets</span></li>
+      <li><input type="checkbox"><span>Versicherungsnachweis</span></li>
+      <li><input type="checkbox"><span>Kreditkarten</span></li>
+    </ul>
   </div>
 
-  <script>
-    const STORAGE_KEY = "packlisteStatus_v3";
-    let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  <!-- KLEIDUNG -->
+  <div class="category" data-category="kleidung">
+    <div class="category-header"><span>Kleidung</span><span class="counter">(0/6)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>T-Shirts</span></li>
+      <li><input type="checkbox"><span>Hose / Shorts</span></li>
+      <li><input type="checkbox"><span>Regenjacke</span></li>
+      <li><input type="checkbox"><span>Badehose / Bikini</span></li>
+      <li><input type="checkbox"><span>Unterwäsche</span></li>
+      <li><input type="checkbox"><span>Leichte Schuhe / Flip-Flops</span></li>
+    </ul>
+  </div>
 
-    document.querySelectorAll(".category").forEach(category => {
-      const list = category.querySelector(".item-list");
-      const header = category.querySelector(".category-header");
-      const arrow = category.querySelector(".arrow");
-      const checkboxes = category.querySelectorAll("input[type='checkbox']");
-      const counter = category.querySelector(".counter");
-      const categoryKey = category.dataset.category;
+  <!-- TECHNIK -->
+  <div class="category" data-category="technik">
+    <div class="category-header"><span>Technik & Elektronik</span><span class="counter">(0/5)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Kamera</span></li>
+      <li><input type="checkbox"><span>Ladegeräte</span></li>
+      <li><input type="checkbox"><span>Powerbank</span></li>
+      <li><input type="checkbox"><span>Reiseadapter</span></li>
+      <li><input type="checkbox"><span>Kopfhörer</span></li>
+    </ul>
+  </div>
 
-      // Lade gespeicherten Status
-      checkboxes.forEach((cb, idx) => {
-        if (savedStatus[categoryKey]?.includes(idx)) {
-          cb.checked = true;
-          cb.closest("li").classList.add("checked");
-        }
-      });
-      updateCounter();
+  <!-- HYGIENE -->
+  <div class="category" data-category="hygiene">
+    <div class="category-header"><span>Hygiene & Pflege</span><span class="counter">(0/5)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Zahnbürste & Zahnpasta</span></li>
+      <li><input type="checkbox"><span>Duschgel / Shampoo</span></li>
+      <li><input type="checkbox"><span>Deo</span></li>
+      <li><input type="checkbox"><span>Sonnencreme</span></li>
+      <li><input type="checkbox"><span>Handdesinfektion</span></li>
+    </ul>
+  </div>
 
-      // Akkordeon-Logik
-      header.addEventListener("click", () => {
-        list.classList.toggle("open");
-        arrow.classList.toggle("open");
-      });
+  <!-- MEDIKAMENTE -->
+  <div class="category" data-category="medikamente">
+    <div class="category-header"><span>Medikamente</span><span class="counter">(0/4)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Persönliche Medikamente</span></li>
+      <li><input type="checkbox"><span>Reiseapotheke (Pflaster, Schmerzmittel)</span></li>
+      <li><input type="checkbox"><span>Mückenspray</span></li>
+      <li><input type="checkbox"><span>Durchfallmittel</span></li>
+    </ul>
+  </div>
 
-      // Checkbox + Speicherung
-      checkboxes.forEach((cb, idx) => {
-        cb.addEventListener("change", () => {
-          cb.closest("li").classList.toggle("checked", cb.checked);
-          if (!savedStatus[categoryKey]) savedStatus[categoryKey] = [];
-          if (cb.checked) {
-            savedStatus[categoryKey].push(idx);
-          } else {
-            savedStatus[categoryKey] = savedStatus[categoryKey].filter(i => i !== idx);
-          }
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(savedStatus));
-          updateCounter();
-        });
-      });
+  <!-- REISEUTENSILIEN -->
+  <div class="category" data-category="reiseutensilien">
+    <div class="category-header"><span>Reiseutensilien</span><span class="counter">(0/5)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Koffer / Rucksack</span></li>
+      <li><input type="checkbox"><span>Schloss</span></li>
+      <li><input type="checkbox"><span>Packwürfel</span></li>
+      <li><input type="checkbox"><span>Trinkflasche</span></li>
+      <li><input type="checkbox"><span>Nackenkissen</span></li>
+    </ul>
+  </div>
 
-      function updateCounter() {
-        const total = checkboxes.length;
-        const checked = Array.from(checkboxes).filter(c => c.checked).length;
-        counter.textContent = `(${checked}/${total})`;
+  <!-- SONSTIGES -->
+  <div class="category" data-category="sonstiges">
+    <div class="category-header"><span>Sonstiges</span><span class="counter">(0/4)</span><svg class="arrow" viewBox="0 0 20 20"><path d="M7 5l5 5-5 5z"/></svg></div>
+    <ul class="item-list">
+      <li><input type="checkbox"><span>Reisehandtuch</span></li>
+      <li><input type="checkbox"><span>Snacks</span></li>
+      <li><input type="checkbox"><span>Bücher / Kindle</span></li>
+      <li><input type="checkbox"><span>Notizbuch & Stift</span></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "packliste_complete_v1";
+  let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+  document.querySelectorAll(".category").forEach(category => {
+    const list = category.querySelector(".item-list");
+    const header = category.querySelector(".category-header");
+    const arrow = category.querySelector(".arrow");
+    const checkboxes = category.querySelectorAll("input[type='checkbox']");
+    const counter = category.querySelector(".counter");
+    const categoryKey = category.dataset.category;
+
+    // Lade gespeicherten Status
+    checkboxes.forEach((cb, idx) => {
+      if (savedStatus[categoryKey]?.includes(idx)) {
+        cb.checked = true;
+        cb.closest("li").classList.add("checked");
       }
     });
-  </script>
+    updateCounter();
+
+    // Akkordeon
+    header.addEventListener("click", () => {
+      list.classList.toggle("open");
+      arrow.classList.toggle("open");
+    });
+
+    // Checkbox + Speicherung
+    checkboxes.forEach((cb, idx) => {
+      cb.addEventListener("change", () => {
+        cb.closest("li").classList.toggle("checked", cb.checked);
+        if (!savedStatus[categoryKey]) savedStatus[categoryKey] = [];
+        if (cb.checked) savedStatus[categoryKey].push(idx);
+        else savedStatus[categoryKey] = savedStatus[categoryKey].filter(i => i !== idx);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedStatus));
+        updateCounter();
+      });
+    });
+
+    function updateCounter() {
+      const total = checkboxes.length;
+      const checked = Array.from(checkboxes).filter(c => c.checked).length;
+      counter.textContent = `(${checked}/${total})`;
+    }
+  });
+</script>
 
 </body>
 </html>
